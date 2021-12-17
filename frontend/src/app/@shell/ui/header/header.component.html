@@ -1,0 +1,37 @@
+<header
+  class="fixed top-0 left-0 right-0 w-full h-16 shadow-lg  bg-opacity-50 bg-neutral-50 dark:bg-neutral-700 backdrop-blur-lg backdrop-filter"
+>
+  <nav
+    class="container flex items-center justify-between h-full py-3 mx-auto  center"
+  >
+    <a [routerLink]="[path.base.home]"
+      class="text-2xl font-bold no-underline cursor-pointer"
+    >
+      <span class="text-neutral-400">Planet</span>Watches
+    </a>
+
+    <div class="flex items-center space-x-4">
+      <a [routerLink]="[path.base.home]" title="Home" class="btn mr-6">
+        Home
+      </a>
+
+       <div *ngIf="loggedInValue">
+         <a [routerLink]="[path.base.dashboard]" title="Orders" class="btn mr-6">
+        Orders
+      </a>
+      <a class="btn" (click)="onClickSignOut()">
+        Sign out
+      </a>
+       </div>
+      <div *ngIf="!loggedInValue">
+      <a class="btn" [routerLink]="['/', path.auth.root, path.auth.signIn]">
+        Login
+      </a>
+      <a class="btn" [routerLink]="['/', path.auth.root, path.auth.signUp]" #notAuthorized>
+        Signup
+      </a>
+      </div>
+
+    </div>
+  </nav>
+</header>

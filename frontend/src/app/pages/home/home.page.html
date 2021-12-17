@@ -1,0 +1,78 @@
+<section class="container">
+<main class="my-8">
+        <div class="container mx-auto px-6">
+            <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
+<!--            <span class="mt-3 text-sm text-gray-500">200+ Products</span>-->
+                     <button (click)="toggleCart()" title="Cart"  class="fixed top-24 text-gray-600 focus:outline-none mx-4 sm:mx-0 right-2 lg:right-4">
+                       <span class="inline-block rounded-min text-gray-600 bg-gray-200 px-2 py-1 text-xs font-bold mr-3 -mb-2 ml-2">{{cart.products.size}}</span>
+
+                       <svg class="h-10 w-10 mt-0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                     </button>
+
+          <!--  :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" -->
+    <div *ngIf="cartOpen" [ngClass]="cartOpen ? 'fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300 translate-x-0 ease-out' : 'fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300 translate-x-full ease-in'">
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+<!--          @click="cartOpen = !cartOpen"-->
+            <button (click)="toggleCart()"  class="text-gray-600 focus:outline-none">
+                <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <hr class="my-3">
+        <div *ngFor="let kv of cart.products| keyvalue" class="flex justify-between mt-6">
+            <div class="flex">
+                <img class="h-20 w-20 object-cover rounded" src="{{kv.value.image}}" alt="">
+                <div class="mx-3">
+                    <h3 class="text-sm text-gray-600">{{ kv.value.name }}</h3>
+                    <div class="flex items-center mt-2">
+                        <button (click)="cart.addQuantity(kv.key)" class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                        <span class="text-gray-700 mx-2">{{ kv.value.selected_quantity }}</span>
+                        <button (click)="cart.reduceQuantity(kv.key)" class="text-gray-500 focus:outline-none focus:text-gray-600">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <span class="text-gray-600">Ksh {{ kv.value.price }}</span>
+        </div>
+
+        <div class="mt-8 items-center justify-center">
+            <h4>Total Ksh {{ cart.cost }}</h4>
+        </div>
+       <div class="myLoadBar" *ngIf="myLoaderService.isLoading | async; else elseBlock">Making order...</div>
+      <ng-template #elseBlock>
+        <a *ngIf="cart.products.size > 0" (click)="checkout()" class="flex items-center justify-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+            <span>Checkout</span>
+            <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </ng-template>
+    </div>
+
+
+            <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+
+            <div class="myLoadBar" *ngIf="myLoaderService.isLoading | async">Loading...</div>
+
+            <div *ngFor="let product of products" class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                    <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('{{ product.image }}')">
+                        <button (click)="cart.addItem(product)" class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </button>
+                    </div>
+                    <div class="px-5 py-3">
+                        <h3 class="text-gray-700 uppercase mb-0">{{product.name}}</h3>
+                        <p class="text-gray-500 mt-2">{{product.quantity}} in stock</p>
+                        <span class="text-gray-700 mt-2">Ksh {{product.price}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+            </div>
+        </div>
+    </main>
+</section>

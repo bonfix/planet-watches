@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hi {{ name }},
+
+Your order details:
+Order ID #{{ order.id }}
+
+{% for p in products %}
+{{ p.name }}  @Ksh {{ p.price }}  Quantity: {{ p.quantity }}
+{% endfor %}
+
+Total Cost: Ksh. {{ order.cost }}
+
+Kind regards,
+Planet Watch team.
+{% endautoescape %}

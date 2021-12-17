@@ -1,0 +1,15 @@
+*.log
+*.pot
+*.pyc
+__pycache__/
+backend/local_settings.py
+db.sqlite3-journal
+media
+
+*.py[cod]
+*$py.class
+.DS_store
+.vscode/
+env/
+idea/
+.idea

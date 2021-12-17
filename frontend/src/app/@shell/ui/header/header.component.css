@@ -1,0 +1,11 @@
+#sortbox:checked ~ #sortboxmenu {
+    opacity: 1;
+}
+#sortbox1:checked ~ #sortboxmenu1 {
+    opacity: 1;
+}
+.dropdown:focus-within .dropdown-menu {
+  opacity:1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}

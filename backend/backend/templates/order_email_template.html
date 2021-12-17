@@ -1,0 +1,24 @@
+{% autoescape off %}
+Hi {{ name }},<br>
+<br>
+You have ordered the following products:<br>
+<table style="width:100%; max-width:500px">
+<tr>
+    <td colspan="3"><b>ORDER ID #{{ order.id }}</b></td>
+</tr>
+<tr>
+    <th>Product</th><th>Price</th><th>Quantity</th>
+</tr>
+{% for p in products %}
+    <tr>
+        <td>{{ p.name }}</td> <td>{{ p.price }}</td> <td>{{ p.quantity }}</td>
+    </tr>
+{% endfor %}
+<tr>
+    <td colspan="3"><b>Total Cost: Ksh. {{ order.cost }}</b></td>
+</tr>
+</table>
+<br>
+Kind regards,<br>
+Planet Watch team.
+{% endautoescape %}
