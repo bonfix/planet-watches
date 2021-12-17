@@ -25,5 +25,5 @@ Install requirements
 Run server
 `ng serve`
 
-### TODO
-Complete deployment to -> https://planet-watches.herokuapp.com/
+### Demo Site
+https://planet-watches.herokuapp.com/
