@@ -3,10 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  firebase: {
+
+  },
   production: false,
   // apiUrl: 'http://localhost:3000/api/v1/',
   // apiUrl: 'http://localhost:8010/api/v1/',
-  apiUrl: 'https://be-planet-watches.herokuapp.com/',
+  apiUrl: 'https://be-planet-watches.herokuapp.com/api/v1/',
 };
 
 /*

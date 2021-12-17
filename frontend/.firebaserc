@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "planet-watches": {
+      "hosting": {
+        "angular-boilerplate": [
+          "planet-watches"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "planet-watches"
+  }
+}

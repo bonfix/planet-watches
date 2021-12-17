@@ -22,6 +22,7 @@ export class HomeService {
 
   /** GET products from the server */
   getProducts(): Observable<GenericResponse> {
+    console.log("environment.production:"+environment.production);
     return this.http.get<GenericResponse>(this.productsUrl+API_UTILS.routes.products.products)
   }
 

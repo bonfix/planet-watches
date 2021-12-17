@@ -1,4 +1,7 @@
 export const environment = {
+  firebase: {
+
+  },
   production: true,
-  apiUrl: '',
+  apiUrl: 'https://be-planet-watches.herokuapp.com/api/v1/',
 };
