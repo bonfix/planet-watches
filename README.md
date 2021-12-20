@@ -27,3 +27,7 @@ Run server
 
 ### Demo Site
 https://planet-watches.herokuapp.com/
+
+
+### To Do
+Convert it to a progressive web app (PWA)
